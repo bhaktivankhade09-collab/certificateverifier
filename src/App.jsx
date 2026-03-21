@@ -153,7 +153,6 @@ export default function App() {
           backgroundImage: `linear-gradient(${t.grid} 1px, transparent 1px), linear-gradient(90deg, ${t.grid} 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }} />
-        {/* ── FIX: hide the glow blob in light mode — it was showing as a solid blue rectangle behind the hero text ── */}
         {theme === "dark" && (
           <div style={{
             position: "absolute", top: "-20%", left: "50%", transform: "translateX(-50%)",
