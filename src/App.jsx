@@ -79,26 +79,26 @@ const useToast = () => {
 // ─── Inline SVG Icons ─────────────────────────────────────────────────────────
 const Icon = ({ name, size = 18, color = "currentColor" }) => {
   const paths = {
-    moon: <><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></>,
-    sun: <><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></>,
-    wallet: <><rect x="2" y="5" width="20" height="14" rx="2"/><polyline points="2 10 22 10"/></>,
-    upload: <><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></>,
-    shield: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></>,
-    check: <><polyline points="20 6 9 17 4 12"/></>,
-    x: <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>,
-    copy: <><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></>,
-    qr: <><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="3" y="3" width="1" height="1" fill="currentColor"/><rect x="14" y="3" width="1" height="1" fill="currentColor"/><rect x="3" y="14" width="1" height="1" fill="currentColor"/><line x1="14" y1="14" x2="17" y2="14"/><line x1="14" y1="17" x2="14" y2="20"/><line x1="17" y1="17" x2="20" y2="17"/></>,
-    trash: <><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></>,
-    list: <><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></>,
-    link: <><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></>,
-    info: <><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></>,
-    alert: <><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></>,
-    hex: <><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></>,
-    eye: <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></>,
-    book: <><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></>,
-    external: <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></>,
-    zap: <><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></>,
-    lock: <><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></>,
+    moon: <><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></>,
+    sun: <><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></>,
+    wallet: <><rect x="2" y="5" width="20" height="14" rx="2" /><polyline points="2 10 22 10" /></>,
+    upload: <><polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" /><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" /></>,
+    shield: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></>,
+    check: <><polyline points="20 6 9 17 4 12" /></>,
+    x: <><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>,
+    copy: <><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></>,
+    qr: <><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="3" y="3" width="1" height="1" fill="currentColor" /><rect x="14" y="3" width="1" height="1" fill="currentColor" /><rect x="3" y="14" width="1" height="1" fill="currentColor" /><line x1="14" y1="14" x2="17" y2="14" /><line x1="14" y1="17" x2="14" y2="20" /><line x1="17" y1="17" x2="20" y2="17" /></>,
+    trash: <><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /></>,
+    list: <><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></>,
+    link: <><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></>,
+    info: <><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></>,
+    alert: <><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></>,
+    hex: <><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" /></>,
+    eye: <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></>,
+    book: <><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></>,
+    external: <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></>,
+    zap: <><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></>,
+    lock: <><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></>,
   };
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
@@ -348,262 +348,95 @@ export default function App() {
 }
 
 
-// ─── Guide Tab ────────────────────────────────────────────────────────────────
-function GuideTab({ t, account, connect, setTab, theme }) {
-  const hasMetaMask = typeof window !== "undefined" && !!window.ethereum;
-  const isConnected = !!account;
-
-  // Determine which step the user is currently on
-  const currentStep = !hasMetaMask ? 0 : !isConnected ? 1 : 2;
-
+const GuideTab = ({ hasMetaMask, isConnected, connect, setTab }) => {
   const steps = [
     {
       num: 1,
       icon: "🦊",
       title: "Install MetaMask",
       subtitle: "Your blockchain wallet",
-      desc: "MetaMask is a free browser extension that acts as your Ethereum wallet. It keeps your keys safe and lets you sign transactions — CertChain never touches your private key.",
+      desc: "Go to https://metamask.io and install the browser extension. Create a new wallet and safely store your recovery phrase.",
       status: hasMetaMask ? "done" : "active",
-      action: !hasMetaMask ? {
-        label: "Install MetaMask →",
-        href: "https://metamask.io/download/",
-        external: true,
-      } : null,
-      tip: "Already installed? Great — move to Step 2.",
+      action: !hasMetaMask
+        ? {
+            label: "Install MetaMask →",
+            href: "https://metamask.io",
+            external: true,
+          }
+        : null,
     },
     {
       num: 2,
       icon: "🔗",
       title: "Connect Your Wallet",
       subtitle: "Link MetaMask to CertChain",
-      desc: "Click "Connect Wallet" below. MetaMask will pop up asking for permission — just click Confirm. Your wallet address will appear in the top navbar once connected.",
+      desc: 'Click "Connect Wallet" below. MetaMask will ask for permission — just click Confirm.',
       status: !hasMetaMask ? "locked" : isConnected ? "done" : "active",
-      action: hasMetaMask && !isConnected ? { label: "Connect Wallet", onClick: connect } : null,
-      tip: "Make sure MetaMask is set to the Sepolia Test Network.",
+      action:
+        hasMetaMask && !isConnected
+          ? { label: "Connect Wallet", onClick: connect }
+          : null,
     },
     {
       num: 3,
       icon: "🌐",
       title: "Switch to Sepolia Network",
-      subtitle: "The test blockchain we use",
-      desc: "CertChain runs on Sepolia — Ethereum's free test network. Open MetaMask → click the network dropdown (top-centre) → search "Sepolia" → select it. Everything works exactly like the real Ethereum, but for free.",
+      subtitle: "Use test blockchain",
+      desc: 'Open MetaMask → select network → choose "Sepolia". This is a free Ethereum test network.',
       status: !isConnected ? "locked" : "active",
       action: {
-        label: "Get Free Sepolia ETH →",
+        label: "Get Free ETH →",
         href: "https://sepoliafaucet.com",
         external: true,
       },
-      tip: "You need a tiny bit of Sepolia ETH to pay gas fees when issuing certificates. It's free from the faucet.",
     },
     {
       num: 4,
       icon: "🎓",
-      title: "Issue a Certificate",
-      subtitle: "For institutes & colleges",
-      desc: "Go to the "Issue Certificate" tab. Upload the certificate file (PDF, image, etc.), fill in the student and course details, then click Issue. MetaMask will ask you to confirm — takes about 15 seconds.",
+      title: "Issue Certificate",
+      subtitle: "For colleges",
+      desc: 'Go to "Issue Certificate" tab → upload file → fill details → click Issue → confirm in MetaMask.',
       status: !isConnected ? "locked" : "active",
       action: { label: "Go to Issue →", onClick: () => setTab("issue") },
-      tip: "The file itself is never stored on-chain. Only its unique fingerprint (SHA-256 hash) is stored.",
     },
     {
       num: 5,
       icon: "🔍",
-      title: "Verify a Certificate",
-      subtitle: "For employers & anyone",
-      desc: "Go to the "Verify Certificate" tab. Upload the certificate file you want to check. Click Verify. You'll instantly see if it's genuine. No wallet needed for this step!",
+      title: "Verify Certificate",
+      subtitle: "For anyone",
+      desc: 'Go to "Verify Certificate" tab → upload file → click Verify → see result instantly.',
       status: "active",
       action: { label: "Go to Verify →", onClick: () => setTab("verify") },
-      tip: "The file must be the exact same file that was issued. Even a tiny change creates a completely different fingerprint.",
     },
   ];
 
-  const statusColor = {
-    done: t.success,
-    active: t.accent,
-    locked: t.textDim,
-  };
-  const statusBg = {
-    done: t.successBg,
-    active: t.accentGlow,
-    locked: "transparent",
-  };
-
   return (
-    <div className="fade-up">
+    <div>
+      <h2>🚀 How to Use CertChain</h2>
+      {steps.map((step) => (
+        <div key={step.num} style={{ marginBottom: "20px" }}>
+          <h3>
+            {step.icon} Step {step.num}: {step.title}
+          </h3>
+          <p>{step.subtitle}</p>
+          <p>{step.desc}</p>
 
-      {/* Header */}
-      <div style={{
-        textAlign: "center", marginBottom: 36,
-        background: t.bgCard, border: `1px solid ${t.border}`,
-        borderRadius: 20, padding: "32px 24px",
-      }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>🚀</div>
-        <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 8 }}>Welcome to CertChain</div>
-        <div style={{ fontSize: 14, color: t.textMuted, lineHeight: 1.6, maxWidth: 440, margin: "0 auto 24px" }}>
-          Follow these 5 steps to start issuing and verifying tamper-proof certificates on the blockchain.
+          {step.action && (
+            step.action.external ? (
+              <a href={step.action.href} target="_blank" rel="noreferrer">
+                {step.action.label}
+              </a>
+            ) : (
+              <button onClick={step.action.onClick}>
+                {step.action.label}
+              </button>
+            )
+          )}
         </div>
-
-        {/* Progress bar */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, flexWrap: "wrap" }}>
-          {steps.map((s, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <div style={{
-                width: 28, height: 28, borderRadius: "50%",
-                background: s.status === "done" ? t.success : s.status === "active" ? t.accentGlow : t.bgCard,
-                border: `2px solid ${s.status === "done" ? t.success : s.status === "active" ? t.accent : t.border}`,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 11, fontWeight: 700,
-                color: s.status === "done" ? t.success : s.status === "active" ? t.accent : t.textDim,
-              }}>
-                {s.status === "done" ? "✓" : s.num}
-              </div>
-              {i < steps.length - 1 && (
-                <div style={{
-                  width: 24, height: 2,
-                  background: s.status === "done" ? t.success : t.border,
-                  borderRadius: 2,
-                }} />
-              )}
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize: 12, color: t.textMuted, marginTop: 10 }}>
-          {currentStep === 0 && "Step 1: Install MetaMask to get started"}
-          {currentStep === 1 && "Step 2: Connect your MetaMask wallet"}
-          {currentStep >= 2 && "✅ Wallet connected — you're all set!"}
-        </div>
-      </div>
-
-      {/* Steps */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-        {steps.map((step) => (
-          <div key={step.num} style={{
-            background: step.status === "locked" ? t.bgCard : t.bgCard,
-            border: `1px solid ${step.status === "active" ? t.accent + "66" : t.border}`,
-            borderRadius: 16, overflow: "hidden",
-            opacity: step.status === "locked" ? 0.45 : 1,
-            transition: "all 0.2s",
-            boxShadow: step.status === "active" ? `0 0 20px ${t.accentGlow}` : "none",
-          }}>
-            {/* Step header */}
-            <div style={{
-              display: "flex", alignItems: "center", gap: 16,
-              padding: "18px 20px",
-              background: step.status === "done" ? t.successBg : step.status === "active" ? t.accentGlow : "transparent",
-              borderBottom: `1px solid ${t.border}`,
-            }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-                background: statusBg[step.status],
-                border: `2px solid ${statusColor[step.status]}44`,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 22,
-              }}>
-                {step.status === "done" ? "✅" : step.icon}
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontWeight: 700, fontSize: 15 }}>
-                    Step {step.num} — {step.title}
-                  </span>
-                  {step.status === "done" && (
-                    <span style={{
-                      fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 10,
-                      background: t.successBg, color: t.success, border: `1px solid ${t.success}44`,
-                      textTransform: "uppercase", letterSpacing: "0.08em",
-                    }}>Done</span>
-                  )}
-                  {step.status === "locked" && (
-                    <span style={{ color: t.textDim }}>
-                      <Icon name="lock" size={12} color={t.textDim} />
-                    </span>
-                  )}
-                </div>
-                <div style={{ fontSize: 12, color: t.textMuted, marginTop: 2 }}>{step.subtitle}</div>
-              </div>
-            </div>
-
-            {/* Step body */}
-            <div style={{ padding: "16px 20px" }}>
-              <p style={{ fontSize: 14, color: t.textMuted, lineHeight: 1.65, marginBottom: 14 }}>
-                {step.desc}
-              </p>
-
-              {/* Tip */}
-              <div style={{
-                display: "flex", alignItems: "flex-start", gap: 8,
-                background: theme === "dark" ? "rgba(251,191,36,0.06)" : "rgba(217,119,6,0.06)",
-                border: `1px solid ${t.warn}33`,
-                borderRadius: 8, padding: "10px 12px", marginBottom: step.action ? 14 : 0,
-              }}>
-                <span style={{ fontSize: 13, flexShrink: 0, marginTop: 1 }}>💡</span>
-                <span style={{ fontSize: 12, color: t.warn, lineHeight: 1.5 }}>{step.tip}</span>
-              </div>
-
-              {/* Action button */}
-              {step.action && step.status !== "locked" && (
-                step.action.href ? (
-                  <a href={step.action.href} target="_blank" rel="noopener noreferrer"
-                    style={{
-                      display: "inline-flex", alignItems: "center", gap: 8,
-                      padding: "10px 20px", borderRadius: 10, fontSize: 13, fontWeight: 600,
-                      background: t.accent, color: "#fff", textDecoration: "none",
-                      transition: "opacity 0.2s",
-                    }}>
-                    <Icon name="external" size={14} color="#fff" />
-                    {step.action.label}
-                  </a>
-                ) : (
-                  <button className="btn" onClick={step.action.onClick} style={{
-                    display: "inline-flex", alignItems: "center", gap: 8,
-                    padding: "10px 20px", borderRadius: 10, fontSize: 13, fontWeight: 600,
-                    background: t.accent, color: "#fff",
-                    boxShadow: `0 0 20px ${t.accentGlow}`,
-                  }}>
-                    <Icon name="zap" size={14} color="#fff" />
-                    {step.action.label}
-                  </button>
-                )
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* FAQ section */}
-      <div style={{
-        marginTop: 32,
-        background: t.bgCard, border: `1px solid ${t.border}`,
-        borderRadius: 16, padding: 24,
-      }}>
-        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 20, display: "flex", alignItems: "center", gap: 8 }}>
-          <Icon name="info" size={16} color={t.accent} /> Common Questions
-        </div>
-        {[
-          ["Do I need a wallet to verify a certificate?",
-           "No! Verification is free and open to everyone. You only need MetaMask if you want to issue or revoke certificates."],
-          ["Does issuing a certificate cost real money?",
-           "No. CertChain uses the Sepolia test network where ETH has no real value. You get free test ETH from sepoliafaucet.com."],
-          ["What if I upload a slightly edited version of the file?",
-           "It won't match. Even changing one pixel or character creates a completely different SHA-256 fingerprint. Only the exact original file will verify successfully."],
-          ["Can a certificate be faked once it's issued?",
-           "No. The certificate record lives on the Ethereum blockchain which is distributed across thousands of computers worldwide. Nobody — not even us — can change or delete it."],
-          ["What is a gas fee?",
-           "A tiny amount of ETH paid to the Ethereum network to process your transaction. On Sepolia testnet this is free. On mainnet this would cost a few cents worth of real ETH."],
-        ].map(([q, a], i) => (
-          <div key={i} style={{
-            padding: "14px 0",
-            borderBottom: i < 4 ? `1px solid ${t.border}` : "none",
-          }}>
-            <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 6, color: t.text }}>{q}</div>
-            <div style={{ fontSize: 13, color: t.textMuted, lineHeight: 1.6 }}>{a}</div>
-          </div>
-        ))}
-      </div>
-
+      ))}
     </div>
   );
-}
+};
 
 // ─── Issue Tab ────────────────────────────────────────────────────────────────
 function IssueTab({ t, account, connect, issueCertificate, toast, theme }) {
