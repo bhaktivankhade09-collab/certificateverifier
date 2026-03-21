@@ -95,6 +95,8 @@ const Icon = ({ name, size = 18, color = "currentColor" }) => {
     alert: <><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></>,
     hex: <><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></>,
     eye: <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></>,
+    book: <><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></>,
+    arrow: <><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></>,
   };
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
@@ -107,7 +109,7 @@ const Icon = ({ name, size = 18, color = "currentColor" }) => {
 // ─── Main App ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [theme, setTheme] = useState("dark");
-  const [tab, setTab] = useState("issue");
+  const [tab, setTab] = useState("guide");
   const t = themes[theme];
   const { toasts, toast } = useToast();
   const { account, signer, provider, chainId, connecting, error: walletError, connect, disconnect } = useWallet();
@@ -146,7 +148,7 @@ export default function App() {
         input[type="date"]::-webkit-calendar-picker-indicator { filter: ${theme === "dark" ? "invert(1)" : "none"}; opacity:0.5; }
       `}</style>
 
-      {/* Decorative background layer — always behind everything */}
+      {/* Decorative background layer */}
       <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: -1 }}>
         <div style={{
           position: "absolute", inset: 0,
@@ -257,9 +259,7 @@ export default function App() {
         }}>
           Issue & Verify Certificates
           <br />
-          <span style={{
-            color: t.accent,
-          }}>on the Blockchain</span>
+          <span style={{ color: t.accent }}>on the Blockchain</span>
         </h1>
         <p className="fade-up" style={{
           fontSize: 16, color: t.textMuted, maxWidth: 520, margin: "0 auto 40px",
@@ -283,13 +283,14 @@ export default function App() {
 
       {/* ── Tabs ── */}
       <div style={{
-        display: "flex", justifyContent: "center", gap: 4,
+        display: "flex", justifyContent: "center", gap: 4, flexWrap: "wrap",
         padding: "0 24px 32px", position: "relative", zIndex: 2,
       }}>
         {[
-          { id: "issue", label: "Issue Certificate", icon: "upload" },
+          { id: "guide",  label: "Get Started",        icon: "book"   },
+          { id: "issue",  label: "Issue Certificate",  icon: "upload" },
           { id: "verify", label: "Verify Certificate", icon: "shield" },
-          { id: "manage", label: "My Certificates", icon: "list" },
+          { id: "manage", label: "My Certificates",    icon: "list"   },
         ].map(({ id, label, icon }) => (
           <button key={id} className="btn" onClick={() => setTab(id)} style={{
             display: "flex", alignItems: "center", gap: 8,
@@ -307,15 +308,10 @@ export default function App() {
 
       {/* ── Tab Content ── */}
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 24px 80px", position: "relative", zIndex: 2 }}>
-        {tab === "issue" && (
-          <IssueTab t={t} account={account} connect={connect} issueCertificate={issueCertificate} toast={toast} theme={theme} />
-        )}
-        {tab === "verify" && (
-          <VerifyTab t={t} account={account} connect={connect} verifyCertificate={verifyCertificate} toast={toast} theme={theme} />
-        )}
-        {tab === "manage" && (
-          <ManageTab t={t} account={account} connect={connect} getIssuerCertificates={getIssuerCertificates} revokeCertificate={revokeCertificate} toast={toast} theme={theme} />
-        )}
+        {tab === "guide"  && <GuideTab  t={t} connect={connect} account={account} setTab={setTab} />}
+        {tab === "issue"  && <IssueTab  t={t} account={account} connect={connect} issueCertificate={issueCertificate} toast={toast} theme={theme} />}
+        {tab === "verify" && <VerifyTab t={t} account={account} connect={connect} verifyCertificate={verifyCertificate} toast={toast} theme={theme} />}
+        {tab === "manage" && <ManageTab t={t} account={account} connect={connect} getIssuerCertificates={getIssuerCertificates} revokeCertificate={revokeCertificate} toast={toast} theme={theme} />}
       </div>
 
       {/* ── Toasts ── */}
@@ -336,6 +332,192 @@ export default function App() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+// ─── Guide Tab ────────────────────────────────────────────────────────────────
+function GuideTab({ t, connect, account, setTab }) {
+  const hasMetaMask = typeof window !== "undefined" && !!window.ethereum;
+
+  const steps = [
+    {
+      number: "01",
+      title: "Install MetaMask",
+      description: "MetaMask is a browser wallet required to sign transactions on the Ethereum blockchain. Install the browser extension from the official website.",
+      action: { label: "Download MetaMask", href: "https://metamask.io/download/" },
+      done: hasMetaMask,
+      color: t.info,
+      colorBg: t.infoBg,
+    },
+    {
+      number: "02",
+      title: "Switch to Sepolia Testnet",
+      description: "CertChain runs on the Sepolia test network. Open MetaMask, click the network name at the top, and select Sepolia. If it's not listed, go to MetaMask Settings → Advanced and enable \"Show test networks\".",
+      done: false,
+      color: t.warn,
+      colorBg: t.warnBg,
+    },
+    {
+      number: "03",
+      title: "Get Free Test ETH",
+      description: "You need a small amount of Sepolia ETH to pay gas fees when issuing certificates. Use the faucet below — paste your wallet address and it will send you test ETH for free.",
+      action: { label: "Open Sepolia Faucet", href: "https://sepoliafaucet.com/" },
+      done: false,
+      color: t.warn,
+      colorBg: t.warnBg,
+    },
+    {
+      number: "04",
+      title: "Connect Your Wallet",
+      description: "Click the button below to link MetaMask to CertChain. A MetaMask popup will appear asking for permission — click Connect. Your wallet address will then appear in the top navbar.",
+      done: !!account,
+      color: t.accent,
+      colorBg: t.accentGlow,
+      isConnect: true,
+    },
+    {
+      number: "05",
+      title: "Issue a Certificate",
+      description: "Go to the Issue Certificate tab. Upload the certificate file (PDF or image), fill in the student name, course, institution and expiry date, then click Issue Certificate. MetaMask will ask you to confirm — approve the transaction and wait a few seconds for it to be recorded on-chain.",
+      done: false,
+      color: t.success,
+      colorBg: t.successBg,
+      navigate: "issue",
+      navigateLabel: "Go to Issue Certificate",
+    },
+    {
+      number: "06",
+      title: "Verify a Certificate",
+      description: "Go to the Verify Certificate tab and upload the exact same file that was issued. CertChain hashes the file and checks the blockchain — you'll instantly see whether it's authentic, expired, or revoked, along with the full certificate details.",
+      done: false,
+      color: t.success,
+      colorBg: t.successBg,
+      navigate: "verify",
+      navigateLabel: "Go to Verify Certificate",
+    },
+  ];
+
+  return (
+    <div className="fade-up">
+
+      {/* Header card */}
+      <div style={{
+        background: t.bgCard, border: `1px solid ${t.border}`,
+        borderRadius: 16, padding: "24px 28px", marginBottom: 20,
+        display: "flex", alignItems: "center", gap: 16,
+      }}>
+        <div style={{
+          width: 48, height: 48, borderRadius: 12, flexShrink: 0,
+          background: t.accentGlow, border: `1px solid ${t.accent}33`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <Icon name="book" size={22} color={t.accent} />
+        </div>
+        <div>
+          <div style={{ fontWeight: 700, fontSize: 17 }}>Getting Started with CertChain</div>
+          <div style={{ fontSize: 13, color: t.textMuted, marginTop: 3, lineHeight: 1.5 }}>
+            Follow these 6 steps to start issuing tamper-proof certificates on the Ethereum blockchain.
+          </div>
+        </div>
+      </div>
+
+      {/* Step cards */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {steps.map((step, i) => (
+          <div key={i} style={{
+            background: t.bgCard,
+            border: `1px solid ${step.done ? step.color + "55" : t.border}`,
+            borderRadius: 14, padding: "18px 22px",
+            transition: "border-color 0.2s",
+          }}>
+            <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+
+              {/* Step badge */}
+              <div style={{
+                width: 38, height: 38, borderRadius: "50%", flexShrink: 0,
+                background: step.done ? step.color : step.colorBg,
+                border: `2px solid ${step.done ? step.color : step.color + "55"}`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                {step.done
+                  ? <Icon name="check" size={16} color="#fff" />
+                  : <span style={{ fontSize: 10, fontWeight: 700, color: step.color, fontFamily: "'DM Mono', monospace" }}>{step.number}</span>
+                }
+              </div>
+
+              {/* Text + actions */}
+              <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                  <span style={{ fontWeight: 600, fontSize: 14 }}>{step.title}</span>
+                  {step.done && (
+                    <span style={{
+                      fontSize: 10, fontWeight: 700, padding: "1px 7px", borderRadius: 20,
+                      background: step.colorBg, color: step.color,
+                      border: `1px solid ${step.color}44`, letterSpacing: "0.06em",
+                    }}>DONE</span>
+                  )}
+                </div>
+
+                <div style={{ fontSize: 13, color: t.textMuted, lineHeight: 1.65, marginBottom: (step.action || step.isConnect || step.navigate) ? 12 : 0 }}>
+                  {step.description}
+                </div>
+
+                {/* External link */}
+                {step.action && (
+                  <a href={step.action.href} target="_blank" rel="noopener noreferrer" style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    fontSize: 12, fontWeight: 600, color: step.color,
+                    background: step.colorBg, border: `1px solid ${step.color}33`,
+                    borderRadius: 8, padding: "6px 12px", textDecoration: "none",
+                  }}>
+                    {step.action.label}
+                    <Icon name="arrow" size={12} color={step.color} />
+                  </a>
+                )}
+
+                {/* Connect wallet */}
+                {step.isConnect && (
+                  account ? (
+                    <div style={{
+                      display: "inline-flex", alignItems: "center", gap: 6,
+                      fontSize: 12, fontWeight: 600, color: step.color,
+                      background: step.colorBg, border: `1px solid ${step.color}33`,
+                      borderRadius: 8, padding: "6px 12px",
+                    }}>
+                      <Icon name="check" size={12} color={step.color} />
+                      Wallet connected
+                    </div>
+                  ) : (
+                    <button className="btn" onClick={connect} style={{
+                      display: "inline-flex", alignItems: "center", gap: 7,
+                      fontSize: 12, fontWeight: 600, color: "#fff",
+                      background: t.accent, borderRadius: 8, padding: "6px 14px",
+                    }}>
+                      <Icon name="wallet" size={13} color="#fff" />
+                      Connect MetaMask
+                    </button>
+                  )
+                )}
+
+                {/* Navigate to tab */}
+                {step.navigate && (
+                  <button className="btn" onClick={() => setTab(step.navigate)} style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    fontSize: 12, fontWeight: 600, color: step.color,
+                    background: step.colorBg, border: `1px solid ${step.color}33`,
+                    borderRadius: 8, padding: "6px 12px",
+                  }}>
+                    {step.navigateLabel}
+                    <Icon name="arrow" size={12} color={step.color} />
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }
