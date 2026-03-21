@@ -258,11 +258,7 @@ export default function App() {
           Issue & Verify Certificates
           <br />
           <span style={{
-            background: `linear-gradient(135deg, ${t.accent}, ${t.info})`,
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            display: "inline-block",
+            color: t.accent,
           }}>on the Blockchain</span>
         </h1>
         <p className="fade-up" style={{
